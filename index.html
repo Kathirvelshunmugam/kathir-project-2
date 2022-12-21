@@ -1,0 +1,78 @@
+var readLineSync= require('readline-sync');
+var chalk=require('chalk');
+var userName=readLineSync.question("Enter your Name ");
+console.log("Welcome to the quiz "+chalk.bold.red(userName));
+console.log("-------------------");
+console.log("1 For each question, enter the option as 1,2,3 or 4.");
+console.log ("2 You will get one point for each correct answer.");
+console.log("3 You need not press Enter after the option.");
+console.log("-------------------");
+var score=0;
+
+console.log("Hi"+" "+chalk.bold.blue(userName)+" "+"Welcome to car quiz");
+
+readLineSync.question(chalk.bold.red("Enter to start"));
+function play(qno,question,option,ans,)
+{
+ console.log(("Q." + qno + " of 10:") + " " + question);
+ const userAnswer=readLineSync.keyInSelect(option,"Enter Option: ", { cancel : false });
+  
+if(option[userAnswer].toUpperCase()===ans.toUpperCase())
+{
+     console.log("Yeahh, Your are right")
+     score++
+   }
+else
+   {
+     console.log("Nah, Your are wrong");
+   }
+  console.log(chalk.bold("your current score is: "), chalk.inverse.green(score));
+  console.log("---------------------------------------------------")
+}
+
+var questions=[{
+   question:"The largest auto producer in the USA is ? ",
+   option:["Tesla","GM","Audi","BMW"] , 
+   answer:"GM",
+  
+},{
+   question:"Beetle car is related to. ",
+   option:["Ford","Audi","VW","BMW"],  
+   answer:"VW",
+},{
+   question:"Following super cars ‘Gallardo’ and ‘Murcielago’ belongs to which company? ",
+   option:["Ford","Lambo","VW","BMW"],  
+   answer:"Lambo",
+},{
+   question:"Which company owns Jaguar and Land Rover brands? ",
+   option:["Ford","Lambo","Tata","BMW"],  
+   answer:"Tata",
+},{
+   question:"Glanza car is related to ",
+   option:["Ford","Lambo","Tata","Toyota"],   
+   answer:"Toyota",
+}]
+
+for (var i = 0; i < questions.length; i++) {
+
+  var currentquestion = questions[i];
+  response = play(i + 1,
+    currentquestion.question,
+    currentquestion.option,
+    currentquestion.answer);
+ }
+ console.log("Your score "+ chalk.bold.green(score));
+
+var highscores=[{
+  Name:"BK",
+  score:10,
+},{
+  Name:"SK",
+  score:10,
+},{
+  Name:"BkK",
+  score:8,
+} ]
+
+console.log("Check for highscores")
+console.table(highscores)
